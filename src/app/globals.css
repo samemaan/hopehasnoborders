@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  --night: #0d2438;
+  --night-deep: #081825;
+  --sand: #eddcc8;
+  --sand-soft: #f7f1e8;
+  --saffron: #c9783c;
+  --saffron-hover: #b06530;
+  --saffron-soft: #f3e0d0;
+  --mist: #a8b9c8;
+  --cream: #fbf8f3;
+  --ink: #1a2d3d;
+  --warm-glow: rgba(201, 120, 60, 0.14);
+}
+
+@theme inline {
+  --color-night: var(--night);
+  --color-night-deep: var(--night-deep);
+  --color-sand: var(--sand);
+  --color-sand-soft: var(--sand-soft);
+  --color-saffron: var(--saffron);
+  --color-saffron-hover: var(--saffron-hover);
+  --color-saffron-soft: var(--saffron-soft);
+  --color-mist: var(--mist);
+  --color-cream: var(--cream);
+  --color-ink: var(--ink);
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-dm-sans);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(ellipse 120% 80% at 10% -10%, var(--warm-glow), transparent 55%),
+    radial-gradient(ellipse 90% 60% at 100% 0%, rgba(237, 220, 200, 0.45), transparent 50%),
+    var(--cream);
+  color: var(--ink);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--saffron) 35%, transparent);
+  color: var(--night-deep);
+}
+
+.font-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--saffron);
+  outline-offset: 3px;
+}
+
+.prose-mission p + p {
+  margin-top: 1.35rem;
+}
+
+.prose-mission {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.pull-quote {
+  position: relative;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--saffron);
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+  color: var(--night);
+  line-height: 1.45;
+}
+
+.grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.warm-wash {
+  background:
+    linear-gradient(180deg, transparent, color-mix(in srgb, var(--saffron-soft) 55%, transparent)),
+    var(--cream);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  border-radius: 0.25rem;
+  background: var(--saffron);
+  color: var(--cream);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.scroll-hint {
+  animation: soft-float 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint {
+    animation: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
