@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DonateButton } from "@/components/DonateButton";
+import { Logo } from "@/components/Logo";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -7,9 +8,7 @@ export function Footer() {
     <footer className="bg-night-deep text-sand pb-20 md:pb-0">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
-          <p className="font-display text-2xl text-cream sm:text-3xl">
-            {site.name}
-          </p>
+          <Logo />
           <p className="mt-4 max-w-md text-base leading-relaxed text-sand/80">
             People helping people. A warm, human mission of dignity,
             transparency, and hope for families in Afghanistan — beyond politics
@@ -48,13 +47,20 @@ export function Footer() {
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sand/55">
-            A message from Sam
+            A message of hope
           </p>
           <p className="mt-4 font-display text-lg italic leading-snug text-cream/90">
             &ldquo;Thank you for believing that kindness can cross borders.&rdquo;
           </p>
           <p className="mt-5 text-sm leading-relaxed text-sand/75">
-            Questions about the mission or how funds are used?
+            Questions about the mission or how funds are used?{" "}
+            <Link
+              href="/contact"
+              className="text-cream underline decoration-saffron/60 underline-offset-4 hover:decoration-saffron focus-ring"
+            >
+              Visit the contact page
+            </Link>{" "}
+            or email
           </p>
           <a
             href={`mailto:${site.contactEmail}`}

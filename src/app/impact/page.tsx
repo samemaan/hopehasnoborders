@@ -51,7 +51,7 @@ export default function ImpactPage() {
           <SectionHeading
             eyebrow="Coming soon — real stories"
             title="This is the shape of our updates."
-            subtitle="The entries below are examples of how we will report impact. They will be replaced with real updates as soon as Sam can share them responsibly."
+            subtitle="The entries below are examples of how we will report impact. They will be replaced with real updates as soon as they can be shared responsibly."
           />
         </FadeIn>
 

@@ -18,7 +18,7 @@ const faqs = [
   },
   {
     q: "How are recipients chosen?",
-    a: "Sam works through trusted personal networks and community contacts on the ground to identify families in genuine need. The focus is practical hardship — empty cupboards, medical urgency, winter exposure — verified as carefully as circumstances allow.",
+    a: "Help is arranged through trusted personal networks and community contacts on the ground, identifying families in genuine need. The focus is practical hardship — empty cupboards, medical urgency, winter exposure — verified as carefully as circumstances allow.",
   },
   {
     q: "Is this about politics or religion?",
@@ -30,7 +30,7 @@ const faqs = [
   },
   {
     q: "How can I donate?",
-    a: `Use the Donate page. Contributions are collected via Revolut once the payment link is live. You can also email ${site.contactEmail} if you prefer to arrange support directly.`,
+    a: `Use the Donate page for PayPal (${site.paypal.paymentUrl} or ${site.paypalMeUrl}). You can also email ${site.contactEmail}.`,
   },
   {
     q: "Can I donate any amount?",
@@ -38,7 +38,7 @@ const faqs = [
   },
   {
     q: "Will I see how my money was used?",
-    a: "Yes — as the mission grows, Sam commits to sharing updates so supporters can see the impact of their generosity. Real-world conditions can delay reporting; honesty about timing is part of the promise.",
+    a: "Yes — as this mission grows, updates will be shared so supporters can see the impact of their generosity. Real-world conditions can delay reporting; honesty about timing is part of the promise.",
   },
   {
     q: "How can I get in touch?",

@@ -33,7 +33,7 @@ export function CtaBand({
         <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <DonateButton>Give hope today</DonateButton>
           <DonateButton href="/story" variant="secondary">
-            Read Sam&apos;s story
+            Read the journey
           </DonateButton>
         </div>
       </FadeIn>

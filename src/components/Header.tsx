@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { DonateButton } from "@/components/DonateButton";
+import { Logo } from "@/components/Logo";
 import { site } from "@/lib/site";
 
 export function Header() {
@@ -38,13 +39,7 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5 sm:px-8 sm:py-4">
-        <Link
-          href="/"
-          className="font-display text-lg leading-tight tracking-tight text-cream focus-ring sm:text-xl"
-          onClick={() => setOpen(false)}
-        >
-          Hope Has No Borders
-        </Link>
+        <Logo onClick={() => setOpen(false)} />
 
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary">
           {site.nav.map((item) => {

@@ -1,6 +1,6 @@
 # Hope Has No Borders
 
-A humanitarian mission website founded by Sam — bringing hope, food, and dignity to families in Afghanistan.
+A humanitarian mission website — bringing hope, food, and dignity to families in Afghanistan.
 
 ## Getting started
 
@@ -11,15 +11,12 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Add your Revolut donate link
+## Donations & contact
 
-Edit `src/lib/site.ts` and set:
+Configured in `src/lib/site.ts`:
 
-```ts
-revolutDonateUrl: "https://your-revolut-link-here",
-```
-
-Also update `contactEmail` when you have a real inbox.
+- PayPal payment URL, hosted button ID, and PayPal.Me link
+- Contact email: `donate@hopehasnoborders.com`
 
 ## Scripts
 

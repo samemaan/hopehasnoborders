@@ -106,11 +106,11 @@ export default function HomePage() {
           <div className="mt-9 flex flex-wrap gap-4">
             <DonateButton>Give hope today</DonateButton>
             <DonateButton href="/story" variant="secondary">
-              Read Sam&apos;s story
+              Read the journey
             </DonateButton>
           </div>
           <p className="scroll-hint mt-14 text-sm text-sand/55">
-            Scroll to meet Sam ↓
+            Scroll to read the journey ↓
           </p>
         </motion.div>
       </section>
@@ -118,7 +118,7 @@ export default function HomePage() {
       <Section>
         <FadeIn>
           <SectionHeading
-            eyebrow="A letter from Sam"
+            eyebrow="A letter of hope"
             title="This is not about politics. It is about humanity."
             subtitle="Sixteen years ago I arrived in Ireland unable to speak a word of English. Ireland became my second home. My heart never left Afghanistan."
           />
@@ -137,8 +137,8 @@ export default function HomePage() {
             think about children who fall asleep hungry. No one deserves that.
           </p>
           <p>
-            My mission is simple, even if the challenge is enormous: bring hope
-            to families who have almost none. I cannot help everyone alone. But
+            This mission is simple, even if the challenge is enormous: bring hope
+            to families who have almost none. One person cannot do it alone. But
             together, we can make a real difference.
           </p>
           <p className="pull-quote my-10 text-2xl sm:text-3xl">
@@ -146,13 +146,13 @@ export default function HomePage() {
             it can mean everything.
           </p>
           <p>
-            I&apos;m not asking anyone to change the world alone. I&apos;m simply
-            asking you to join me in changing someone&apos;s world.
+            I am not asking anyone to change the world alone. I am simply
+            asking you to join in changing someone&apos;s world.
           </p>
           <p className="mt-10 font-display text-xl italic text-night">
             With hope,
             <br />
-            Sam
+            {site.founder}
           </p>
           <Link
             href="/story"

@@ -7,32 +7,36 @@ import { Section } from "@/components/Section";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "My Story",
+  title: "The Journey",
   description:
-    "Sam’s journey from Afghanistan to Ireland — and the mission to bring hope home.",
+    "From Afghanistan to Ireland — and a mission to carry hope back to families who feel forgotten.",
 };
 
 export default function StoryPage() {
   return (
     <>
       <PageHero
-        eyebrow="My Story"
-        title="From Afghanistan to Ireland — and back to the heart."
-        subtitle="I came with nothing but hope. Ireland gave me a future. Now I want to give hope to those who still wait for theirs."
+        eyebrow={site.storyLabel}
+        title="I was given a chance. Now I want to pass that chance on."
+        subtitle="Sixteen years ago I crossed into a new life with nothing but hope. Today I ask you to help me send that hope home — to families still waiting for their tomorrow."
         image={site.images.story}
       />
 
       <Section>
         <FadeIn className="prose-mission mx-auto max-w-3xl text-lg leading-relaxed text-ink/80">
           <p className="font-display text-2xl text-night sm:text-3xl">
-            My name is Sam.
+            I am not asking you to know my name.
           </p>
           <p>
-            I came to Ireland from Afghanistan sixteen years ago with nothing
-            but hope. I couldn&apos;t speak a single word of English. Everything
-            was new, unfamiliar, and challenging. Every day was a lesson, every
-            conversation was a struggle, and every small achievement felt like a
-            victory.
+            I am asking you to know this: I came to Ireland from Afghanistan
+            sixteen years ago with nothing but hope. I could not speak a single
+            word of English. Everything was new, unfamiliar, and overwhelming.
+            Every day was a lesson. Every conversation was courage. Every small
+            step forward felt like a victory worth celebrating.
+          </p>
+          <p>
+            If you have ever felt lost in a new place — unsure, unseen, and
+            trying anyway — you already understand the beginning of this story.
           </p>
         </FadeIn>
       </Section>
@@ -53,13 +57,13 @@ export default function StoryPage() {
               A second home
             </p>
             <h2 className="mt-4 font-display text-3xl leading-tight text-cream sm:text-4xl">
-              Over the years, Ireland became my second home.
+              Ireland did not just welcome me. It rebuilt me.
             </h2>
             <p className="mt-5 max-w-md text-base leading-relaxed text-sand/85">
-              I learned the language, worked hard, graduated with a degree in
-              Computer Science, and have proudly worked as a Software Developer
-              for more than eight years. Ireland gave me opportunities that
-              changed my life forever.
+              I learned the language. I worked hard. I graduated with a degree
+              in Computer Science and have worked as a software developer for
+              more than eight years. Ireland gave me dignity, purpose, and a
+              future I once only dreamed of. That gift changed everything.
             </p>
           </FadeIn>
         </div>
@@ -68,79 +72,70 @@ export default function StoryPage() {
       <Section>
         <FadeIn className="prose-mission mx-auto max-w-3xl text-lg leading-relaxed text-ink/80">
           <p className="font-display text-2xl text-night sm:text-3xl">
-            But while my life has changed, my heart has never left Afghanistan.
+            But while my life changed, my heart never left Afghanistan.
           </p>
           <p>
-            Every single day I think about the people who never had the
-            opportunities I was fortunate enough to receive. I think about
-            educated men and women who spent years studying, dreaming, and
-            working toward a better future — only to find themselves without
-            jobs, without hope, and without the ability to provide even the most
-            basic necessities for their families.
+            Every day I think of people who studied, dreamed, and worked toward
+            a better future — and then found doors closed: no jobs, little hope,
+            and not enough to cover even the basics for their families.
           </p>
           <p>
-            I think about mothers who skip meals so their children can eat. I
-            think about fathers who search endlessly for work but return home
-            empty-handed. I think about elderly people who have no one to care
-            for them. I think about children who fall asleep hungry — not
-            because they did anything wrong, but because they were born into
-            circumstances beyond their control.
+            I think of mothers who skip meals so their children can eat. Fathers
+            who search for work and return home empty-handed. Elders with no one
+            left to care for them. Children who fall asleep hungry — not because
+            they failed, but because they were born into circumstances beyond
+            their control.
           </p>
-          <p className="font-display text-2xl text-night">No one deserves that.</p>
-          <p>
-            This website is not about politics. It is not about religion. It is
-            about humanity. It is about people helping people.
+          <p className="font-display text-2xl text-night">
+            No one deserves to be forgotten.
           </p>
           <p>
-            My mission is simple, even if the challenge is enormous. I want to
-            bring hope to families who have almost none. I know I cannot help
-            everyone by myself. But I truly believe that together, we can make a
-            real difference.
+            This mission is not about politics. It is not about religion. It is
+            about humanity — people helping people. It is about proving that
+            kindness can travel farther than any border.
           </p>
           <p>
+            My mission is simple, even when the need feels endless: bring hope
+            to families who have almost none. I cannot do it alone. I was never
+            meant to. Hope grows when we share it.
+          </p>
+          <p className="pull-quote my-10 text-2xl sm:text-3xl">
             One meal may seem small to us. To someone who has not eaten all day,
-            it can mean everything. One small donation might seem insignificant.
-            To a struggling family, it could be the reason their children do not
-            go to bed hungry tonight.
+            it can mean everything.
           </p>
           <p>
-            Every act of kindness matters. Every contribution matters. Every
-            life matters.
-          </p>
-          <p>
-            I&apos;m not asking anyone to change the world alone. I&apos;m
-            simply asking you to join me in changing someone&apos;s world.
-            Whether your contribution is large or small, it carries the same
-            message:
+            I am not asking you to change the whole world. I am asking you to
+            change <em>someone&apos;s</em> world. Whether your gift is large or
+            small, it carries the same message:
           </p>
           <p className="font-display text-3xl text-saffron">
             &ldquo;You are not forgotten.&rdquo;
           </p>
           <p>
-            As this mission grows, I will share updates whenever possible so you
-            can see the impact your generosity is making. I believe in
-            transparency, honesty, and treating every person we help with
-            dignity and respect.
+            As this mission grows, updates will be shared with honesty and
+            respect — so you can see the difference compassion makes. Every
+            person we help will be treated with dignity.
           </p>
           <p>
-            If you choose to support this mission, you are not simply making a
-            donation. You are giving hope. You are sharing compassion. You are
-            helping a child eat. You are helping a parent breathe a little
-            easier. You are reminding another human being that there are still
-            people in this world who care.
+            If you choose to support this work, you are not only making a
+            donation. You are giving a child a meal. You are giving a parent a
+            breath of relief. You are reminding another human being that
+            someone, somewhere, still cares.
           </p>
           <p>
-            From the bottom of my heart, thank you for reading my story. Thank
-            you for believing that kindness can cross borders. Thank you for
-            believing that humanity is stronger when we stand together.
+            Thank you for reading. Thank you for believing that kindness can
+            cross oceans. Thank you for believing we are stronger when we stand
+            together.
           </p>
-          <p>
-            This is my mission. I hope it becomes your mission too.
+          <p className="font-display text-xl text-night">
+            This began as one person&apos;s promise.
+            <br />
+            With you, it can become a movement of hope.
           </p>
-          <p className="font-display text-xl italic text-night">
+          <p className="mt-10 font-display text-xl italic text-night">
             With hope,
             <br />
-            Sam
+            {site.founder}
           </p>
         </FadeIn>
       </Section>

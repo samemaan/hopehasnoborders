@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { site } from "@/lib/site";
 
 type DonateButtonProps = {
   className?: string;
@@ -24,29 +23,24 @@ export function DonateButton({
   children = "Give hope",
   href = "/donate",
 }: DonateButtonProps) {
-  const isExternal =
-    href.startsWith("http") || href === site.revolutDonateUrl;
-
   const classes = `inline-flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 focus-ring ${variants[variant]} ${className}`;
 
-  const content = children;
-
-  if (isExternal && site.revolutDonateUrl.startsWith("http")) {
+  if (href.startsWith("http")) {
     return (
       <a
-        href={site.revolutDonateUrl}
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className={classes}
       >
-        {content}
+        {children}
       </a>
     );
   }
 
   return (
     <Link href={href} className={classes}>
-      {content}
+      {children}
     </Link>
   );
 }

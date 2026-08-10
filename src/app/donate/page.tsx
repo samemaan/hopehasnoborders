@@ -3,6 +3,7 @@ import Link from "next/link";
 import { DonateButton } from "@/components/DonateButton";
 import { FadeIn } from "@/components/FadeIn";
 import { PageHero } from "@/components/PageHero";
+import { PayPalDonate } from "@/components/PayPalDonate";
 import { Section, SectionHeading } from "@/components/Section";
 import { site } from "@/lib/site";
 
@@ -28,8 +29,6 @@ const gifts = [
 ];
 
 export default function DonatePage() {
-  const hasRevolut = site.revolutDonateUrl.startsWith("http");
-
   return (
     <>
       <PageHero
@@ -40,7 +39,7 @@ export default function DonatePage() {
       />
 
       <Section>
-        <div className="grid gap-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
+        <div className="grid gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <FadeIn>
             <SectionHeading
               eyebrow="Your gift"
@@ -60,59 +59,57 @@ export default function DonatePage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-10 text-sm leading-relaxed text-ink/60">
+              Payments are processed securely by PayPal. Funds support the Hope
+              Has No Borders mission. See{" "}
+              <Link
+                href="/impact"
+                className="font-medium text-saffron underline decoration-saffron/40 underline-offset-2 hover:decoration-saffron"
+              >
+                Impact
+              </Link>{" "}
+              for how help is shared.
+            </p>
           </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <div className="bg-night px-6 py-8 text-cream sm:px-8 sm:py-10">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sand/60">
-                Secure payment
-              </p>
-              <h2 className="mt-3 font-display text-3xl">
-                Donate via Revolut
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-sand/85">
-                {hasRevolut
-                  ? "You will be taken to Revolut to complete your contribution securely."
-                  : "The Revolut payment link will be added here shortly. In the meantime, reach out by email if you would like to contribute or ask a question."}
-              </p>
-
-              {hasRevolut ? (
-                <a
-                  href={site.revolutDonateUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-flex w-full items-center justify-center rounded-sm bg-saffron px-6 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-saffron-hover focus-ring"
-                >
-                  Continue to Revolut
-                </a>
-              ) : (
-                <div className="mt-8 space-y-4">
-                  <p className="rounded-sm border border-sand/25 bg-night-deep/60 px-4 py-3 text-sm text-sand/80">
-                    Payment link coming soon — paste your Revolut URL into{" "}
-                    <code className="text-cream">src/lib/site.ts</code>.
-                  </p>
-                  <a
-                    href={`mailto:${site.contactEmail}?subject=I%20want%20to%20donate`}
-                    className="inline-flex w-full items-center justify-center rounded-sm bg-saffron px-6 py-3.5 text-sm font-semibold text-cream transition-colors hover:bg-saffron-hover focus-ring"
-                  >
-                    Email Sam to contribute
-                  </a>
+          <div className="space-y-6">
+            <FadeIn delay={0.05}>
+              <div className="bg-night px-6 py-8 text-cream sm:px-8 sm:py-10">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sand/60">
+                  Secure payment · EUR
+                </p>
+                <h2 className="mt-3 font-display text-3xl">Donate with PayPal</h2>
+                <p className="mt-4 text-sm leading-relaxed text-sand/85">
+                  Give securely through PayPal. You can use a PayPal balance or
+                  card — checkout happens on PayPal’s site.
+                </p>
+                <div className="mt-6">
+                  <PayPalDonate />
                 </div>
-              )}
+              </div>
+            </FadeIn>
 
-              <p className="mt-6 text-xs leading-relaxed text-sand/55">
-                Hope Has No Borders is a people-to-people mission. Updates on
-                how funds are used will be shared on the{" "}
-                <Link
-                  href="/impact"
-                  className="underline decoration-saffron/40 underline-offset-2 hover:decoration-saffron"
+            <FadeIn delay={0.1}>
+              <div className="border border-night/10 bg-sand-soft/70 px-6 py-7 sm:px-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-saffron">
+                  Prefer email?
+                </p>
+                <h2 className="mt-2 font-display text-2xl text-night">
+                  Write to us
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-ink/70">
+                  Questions about donating, or you’d rather arrange support by
+                  email first? Reach out anytime.
+                </p>
+                <a
+                  href={`mailto:${site.contactEmail}?subject=I%20want%20to%20donate`}
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-md border border-night/15 bg-cream px-6 py-3.5 text-sm font-semibold text-night transition-colors hover:border-saffron focus-ring"
                 >
-                  Impact
-                </Link>{" "}
-                page.
-              </p>
-            </div>
-          </FadeIn>
+                  Email {site.contactEmail}
+                </a>
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </Section>
 
