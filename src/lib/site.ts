@@ -6,7 +6,7 @@ export const site = {
   founder: "Sam",
   // TODO: paste Revolut payment link when ready
   revolutDonateUrl: "#donate-link-coming-soon",
-  contactEmail: "hello@hopehasnoborders.org",
+  contactEmail: "donate@hopehasnoborders.com",
   nav: [
     { href: "/story", label: "My Story", shortLabel: "Story" },
     { href: "/why-this-matters", label: "Why This Matters", shortLabel: "Why it matters" },
