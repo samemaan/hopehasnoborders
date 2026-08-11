@@ -7,40 +7,12 @@ import { useEffect, useRef, useState } from "react";
 import { CtaBand } from "@/components/CtaBand";
 import { DonateButton } from "@/components/DonateButton";
 import { FadeIn } from "@/components/FadeIn";
+import { useI18n } from "@/components/LanguageProvider";
 import { Section, SectionHeading } from "@/components/Section";
 import { site } from "@/lib/site";
 
-const moments = [
-  {
-    title: "Mothers who skip meals",
-    text: "So their children can eat. Quiet love, every single day — and a weight no parent should carry alone.",
-  },
-  {
-    title: "Fathers returning empty-handed",
-    text: "Searching endlessly for work, coming home with nothing but hope that tomorrow might be kinder.",
-  },
-  {
-    title: "Children falling asleep hungry",
-    text: "Not because they did anything wrong — only because they were born into circumstances beyond their control.",
-  },
-];
-
-const helps = [
-  {
-    title: "A meal tonight",
-    text: "Food packages that turn an empty evening into a shared table — and a little peace.",
-  },
-  {
-    title: "Warmth in winter",
-    text: "Coats and blankets when the cold arrives without mercy, so a child can sleep safer.",
-  },
-  {
-    title: "Emergency relief",
-    text: "Medicine and urgent support when a family has nowhere else to turn.",
-  },
-];
-
 export default function HomePage() {
+  const { t } = useI18n();
   const heroRef = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
   const [mounted, setMounted] = useState(false);
@@ -90,27 +62,25 @@ export default function HomePage() {
           className="relative z-10 mx-auto w-full max-w-5xl px-5 pb-24 pt-36 sm:px-8 sm:pb-28"
         >
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-sand/75">
-            A mission of humanity
+            {t.home.heroEyebrow}
           </p>
           <p className="font-display text-4xl leading-[1.05] tracking-tight text-cream sm:text-5xl md:text-7xl lg:text-[5.25rem]">
-            Hope Has No Borders
+            {site.name}
           </p>
           <h1 className="mt-6 max-w-2xl font-display text-2xl italic text-sand sm:text-3xl md:text-4xl">
             {site.tagline}
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-sand/90 sm:text-lg">
-            I came to Ireland from Afghanistan with nothing but hope. Now I ask
-            you — gently, from the heart — to help me carry that hope back to
-            families who feel forgotten.
+            {t.home.heroLead}
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
-            <DonateButton>Give hope today</DonateButton>
+            <DonateButton>{t.common.giveHopeToday}</DonateButton>
             <DonateButton href="/story" variant="secondary">
-              Read the journey
+              {t.common.readJourney}
             </DonateButton>
           </div>
           <p className="scroll-hint mt-14 text-sm text-sand/55">
-            Scroll to read the journey ↓
+            {t.home.scrollHint}
           </p>
         </motion.div>
       </section>
@@ -118,47 +88,29 @@ export default function HomePage() {
       <Section>
         <FadeIn>
           <SectionHeading
-            eyebrow="A letter of hope"
-            title="This is not about politics. It is about humanity."
-            subtitle="Sixteen years ago I arrived in Ireland unable to speak a word of English. Ireland became my second home. My heart never left Afghanistan."
+            eyebrow={t.home.letterEyebrow}
+            title={t.home.letterTitle}
+            subtitle={t.home.letterSubtitle}
           />
         </FadeIn>
-        <FadeIn
-          delay={0.1}
-          className="prose-mission max-w-3xl text-ink/80"
-        >
-          <p>
-            Every day I think about educated men and women who studied and
-            dreamed — now without jobs, without hope, and without the ability to
-            provide even the most basic necessities for their families.
-          </p>
-          <p>
-            I think about elderly people who have no one to care for them. I
-            think about children who fall asleep hungry. No one deserves that.
-          </p>
-          <p>
-            This mission is simple, even if the challenge is enormous: bring hope
-            to families who have almost none. One person cannot do it alone. But
-            together, we can make a real difference.
-          </p>
+        <FadeIn delay={0.1} className="prose-mission max-w-3xl text-ink/80">
+          <p>{t.home.letterP1}</p>
+          <p>{t.home.letterP2}</p>
+          <p>{t.home.letterP3}</p>
           <p className="pull-quote my-10 text-2xl sm:text-3xl">
-            One meal may seem small to us. To someone who has not eaten all day,
-            it can mean everything.
+            {t.home.letterQuote}
           </p>
-          <p>
-            I am not asking anyone to change the world alone. I am simply
-            asking you to join in changing someone&apos;s world.
-          </p>
+          <p>{t.home.letterP4}</p>
           <p className="mt-10 font-display text-xl italic text-night">
-            With hope,
+            {t.common.withHope}
             <br />
-            {site.founder}
+            {t.common.founderSignOff}
           </p>
           <Link
             href="/story"
             className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-saffron underline decoration-saffron/40 underline-offset-4 hover:decoration-saffron focus-ring"
           >
-            Read the full journey
+            {t.home.readFull}
             <span aria-hidden>→</span>
           </Link>
         </FadeIn>
@@ -179,13 +131,13 @@ export default function HomePage() {
           <FadeIn>
             <SectionHeading
               light
-              eyebrow="Why hearts break"
-              title="No one deserves to be forgotten."
-              subtitle="These are not statistics. They are neighbours of my memory — families whose dignity deserves our care."
+              eyebrow={t.home.heartsEyebrow}
+              title={t.home.heartsTitle}
+              subtitle={t.home.heartsSubtitle}
             />
           </FadeIn>
           <div className="grid gap-10 md:grid-cols-3 md:gap-10">
-            {moments.map((item, i) => (
+            {t.home.moments.map((item, i) => (
               <FadeIn key={item.title} delay={0.08 * i}>
                 <div className="border-t border-saffron/35 pt-6">
                   <h3 className="font-display text-2xl leading-snug text-cream">
@@ -200,7 +152,7 @@ export default function HomePage() {
           </div>
           <FadeIn className="mt-12">
             <DonateButton href="/why-this-matters" variant="secondary">
-              See why this matters
+              {t.home.seeWhy}
             </DonateButton>
           </FadeIn>
         </div>
@@ -209,13 +161,13 @@ export default function HomePage() {
       <Section className="warm-wash">
         <FadeIn>
           <SectionHeading
-            eyebrow="How help works"
-            title="Every act of kindness matters."
-            subtitle="Whether your contribution is large or small, it carries the same message: you are not forgotten."
+            eyebrow={t.home.helpEyebrow}
+            title={t.home.helpTitle}
+            subtitle={t.home.helpSubtitle}
           />
         </FadeIn>
         <div className="grid gap-12 md:grid-cols-3">
-          {helps.map((item, i) => (
+          {t.home.helps.map((item, i) => (
             <FadeIn key={item.title} delay={0.08 * i}>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-saffron">
                 0{i + 1}
@@ -229,23 +181,22 @@ export default function HomePage() {
         </div>
         <FadeIn className="mt-14 flex flex-wrap gap-4">
           <DonateButton href="/how-donations-help" variant="ghost">
-            See how donations help
+            {t.home.seeHow}
           </DonateButton>
-          <DonateButton>Give hope today</DonateButton>
+          <DonateButton>{t.common.giveHopeToday}</DonateButton>
         </FadeIn>
       </Section>
 
       <Section className="!pt-4">
         <FadeIn className="mx-auto max-w-3xl border-y border-saffron/20 bg-saffron-soft/40 px-6 py-14 text-center sm:px-10">
           <p className="font-display text-2xl leading-snug text-night sm:text-3xl">
-            As this mission grows, I will share updates with transparency,
-            honesty, and respect for every person we help.
+            {t.home.transparency}
           </p>
           <Link
             href="/impact"
             className="mt-6 inline-flex text-sm font-semibold text-saffron underline decoration-saffron/40 underline-offset-4 hover:decoration-saffron focus-ring"
           >
-            View impact updates →
+            {t.home.viewImpact}
           </Link>
         </FadeIn>
       </Section>

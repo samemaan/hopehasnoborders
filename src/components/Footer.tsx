@@ -1,30 +1,42 @@
+"use client";
+
 import Link from "next/link";
 import { DonateButton } from "@/components/DonateButton";
 import { Logo } from "@/components/Logo";
+import { useI18n } from "@/components/LanguageProvider";
 import { site } from "@/lib/site";
 
 export function Footer() {
+  const { t } = useI18n();
+
+  const nav = [
+    { href: "/story", label: t.nav.story },
+    { href: "/why-this-matters", label: t.nav.why },
+    { href: "/how-donations-help", label: t.nav.how },
+    { href: "/impact", label: t.nav.impact },
+    { href: "/faq", label: t.nav.faq },
+    { href: "/contact", label: t.nav.contact },
+  ];
+
   return (
-    <footer className="bg-night-deep text-sand pb-20 md:pb-0">
+    <footer className="bg-night-deep pb-20 text-sand md:pb-0">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 md:grid-cols-[1.5fr_1fr_1fr]">
         <div>
           <Logo />
           <p className="mt-4 max-w-md text-base leading-relaxed text-sand/80">
-            People helping people. A warm, human mission of dignity,
-            transparency, and hope for families in Afghanistan — beyond politics
-            and beyond borders.
+            {t.footer.blurb}
           </p>
           <div className="mt-7">
-            <DonateButton>Give hope</DonateButton>
+            <DonateButton>{t.common.giveHope}</DonateButton>
           </div>
         </div>
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sand/55">
-            Explore
+            {t.footer.explore}
           </p>
           <ul className="mt-4 space-y-3 text-sm">
-            {site.nav.map((item) => (
+            {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -39,7 +51,7 @@ export function Footer() {
                 href="/donate"
                 className="text-sand/90 transition-colors hover:text-cream focus-ring"
               >
-                Donate
+                {t.common.donate}
               </Link>
             </li>
           </ul>
@@ -47,20 +59,20 @@ export function Footer() {
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sand/55">
-            A message of hope
+            {t.footer.messageTitle}
           </p>
           <p className="mt-4 font-display text-lg italic leading-snug text-cream/90">
-            &ldquo;Thank you for believing that kindness can cross borders.&rdquo;
+            &ldquo;{t.footer.messageQuote}&rdquo;
           </p>
           <p className="mt-5 text-sm leading-relaxed text-sand/75">
-            Questions about the mission or how funds are used?{" "}
+            {t.footer.questions}{" "}
             <Link
               href="/contact"
               className="text-cream underline decoration-saffron/60 underline-offset-4 hover:decoration-saffron focus-ring"
             >
-              Visit the contact page
+              {t.footer.contactLink}
             </Link>{" "}
-            or email
+            {t.footer.orEmail}
           </p>
           <a
             href={`mailto:${site.contactEmail}`}
@@ -74,9 +86,9 @@ export function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 text-xs text-sand/50 sm:flex-row sm:items-center sm:justify-between sm:px-8">
           <p>
-            © {new Date().getFullYear()} {site.name}. Built with hope.
+            © {new Date().getFullYear()} {site.name}. {t.footer.builtWithHope}
           </p>
-          <p>Not affiliated with any political or religious organisation.</p>
+          <p>{t.footer.notAffiliated}</p>
         </div>
       </div>
     </footer>

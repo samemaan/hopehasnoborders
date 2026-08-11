@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useI18n } from "@/components/LanguageProvider";
 
 export function MobileDonateBar() {
   const pathname = usePathname();
+  const { t } = useI18n();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -26,14 +28,14 @@ export function MobileDonateBar() {
       <div className="mx-auto flex max-w-lg items-center justify-between gap-3">
         <p className="min-w-0 text-sm leading-snug text-ink/75">
           <span className="font-display text-base text-night">
-            A meal can mean everything.
+            {t.mobileBar.line}
           </span>
         </p>
         <Link
           href="/donate"
           className="shrink-0 rounded-md bg-saffron px-5 py-2.5 text-sm font-semibold text-cream shadow-[0_8px_20px_-8px_rgba(201,120,60,0.7)] focus-ring"
         >
-          Give hope
+          {t.common.giveHope}
         </Link>
       </div>
     </div>

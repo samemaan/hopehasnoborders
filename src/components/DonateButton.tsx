@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { useI18n } from "@/components/LanguageProvider";
 
 type DonateButtonProps = {
   className?: string;
@@ -20,9 +23,11 @@ const variants = {
 export function DonateButton({
   className = "",
   variant = "primary",
-  children = "Give hope",
+  children,
   href = "/donate",
 }: DonateButtonProps) {
+  const { t } = useI18n();
+  const label = children ?? t.common.giveHope;
   const classes = `inline-flex items-center justify-center gap-2 rounded-md px-7 py-3.5 text-sm font-semibold tracking-wide transition-all duration-300 focus-ring ${variants[variant]} ${className}`;
 
   if (href.startsWith("http")) {
@@ -33,14 +38,14 @@ export function DonateButton({
         rel="noopener noreferrer"
         className={classes}
       >
-        {children}
+        {label}
       </a>
     );
   }
 
   return (
     <Link href={href} className={classes}>
-      {children}
+      {label}
     </Link>
   );
 }

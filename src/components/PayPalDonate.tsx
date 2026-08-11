@@ -1,8 +1,12 @@
+"use client";
+
 import Image from "next/image";
+import { useI18n } from "@/components/LanguageProvider";
 import { site } from "@/lib/site";
 
 /** Official PayPal payment-link button (form snippet from PayPal dashboard). */
 export function PayPalDonate() {
+  const { t } = useI18n();
   const buttonClass = `pp-${site.paypal.hostedButtonId}`;
 
   return (
@@ -18,7 +22,7 @@ export function PayPalDonate() {
           <input
             className={buttonClass}
             type="submit"
-            value="Donate Now"
+            value={t.common.donate}
           />
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -39,7 +43,7 @@ export function PayPalDonate() {
 
       <div className="flex flex-col items-center gap-3 border-t border-cream/15 pt-6">
         <p className="text-center text-sm text-sand/80">
-          Prefer to scan? Open the PayPal donate page on your phone.
+          {t.donate.preferScan}
         </p>
         <div className="overflow-hidden rounded-md bg-cream p-3">
           <Image
@@ -59,7 +63,7 @@ export function PayPalDonate() {
           rel="noopener noreferrer"
           className="inline-flex w-full items-center justify-center rounded-md border border-cream/30 bg-cream/10 px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-cream/20 focus-ring"
         >
-          Open PayPal payment page
+          {t.donate.openPaypal}
         </a>
         <a
           href={site.paypalMeUrl}
@@ -67,7 +71,7 @@ export function PayPalDonate() {
           rel="noopener noreferrer"
           className="inline-flex w-full items-center justify-center rounded-md border border-cream/20 px-6 py-2.5 text-sm text-sand/85 transition-colors hover:text-cream focus-ring"
         >
-          Or use PayPal.Me
+          {t.donate.orPaypalMe}
         </a>
       </div>
     </div>

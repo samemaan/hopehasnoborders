@@ -8,6 +8,7 @@ type FadeInProps = {
   className?: string;
   delay?: number;
   y?: number;
+  dir?: "ltr" | "rtl";
 };
 
 export function FadeIn({
@@ -15,6 +16,7 @@ export function FadeIn({
   className,
   delay = 0,
   y = 28,
+  dir,
 }: FadeInProps) {
   const reduce = useReducedMotion();
   const [mounted, setMounted] = useState(false);
@@ -25,12 +27,17 @@ export function FadeIn({
 
   // Plain markup on SSR + first client paint so Framer styles can't mismatch.
   if (!mounted) {
-    return <div className={className}>{children}</div>;
+    return (
+      <div className={className} dir={dir}>
+        {children}
+      </div>
+    );
   }
 
   return (
     <motion.div
       className={className}
+      dir={dir}
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}

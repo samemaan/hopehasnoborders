@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { FadeIn } from "@/components/FadeIn";
+import { useI18n } from "@/components/LanguageProvider";
+import { fill } from "@/lib/i18n/fill";
 import { afghanistanStats as s } from "@/lib/stats";
 
 function useAnimatedPercent(target: number, enabled: boolean, duration = 1100) {
@@ -129,14 +131,15 @@ function BarRow({
 }
 
 export function StatsVisuals() {
+  const { t } = useI18n();
   const hungerShare = [
     {
-      label: "Emergency hunger (IPC Phase 4)",
+      label: t.stats.sliceEmergency,
       millions: s.hunger.emergencyMillions,
       color: "#8B4518",
     },
     {
-      label: "Crisis hunger (IPC Phase 3)",
+      label: t.stats.sliceCrisis,
       millions:
         Math.round(
           (s.hunger.leanSeasonMillions - s.hunger.emergencyMillions) * 10,
@@ -144,7 +147,7 @@ export function StatsVisuals() {
       color: "#C4783A",
     },
     {
-      label: "Not in acute crisis (estimate)",
+      label: t.stats.sliceNotAcute,
       millions:
         Math.round(
           (s.populationApproxMillions - s.hunger.leanSeasonMillions) * 10,
@@ -158,36 +161,38 @@ export function StatsVisuals() {
     <div className="space-y-20">
       <FadeIn>
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-saffron">
-          Graphical analysis
+          {t.stats.eyebrow}
         </p>
         <h2 className="mt-3 font-display text-3xl text-night sm:text-4xl md:text-5xl">
-          The scale of need — in numbers
+          {t.stats.title}
         </h2>
         <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/70">
-          These charts use public humanitarian and economic data so you can see
-          how widespread hunger, poverty, and joblessness are. Behind every bar
-          is a family.
+          {t.stats.lead}
         </p>
-        <p className="mt-2 text-sm text-ink/50">{s.updatedLabel}</p>
+        <p className="mt-2 text-sm text-ink/50">{t.stats.updatedLabel}</p>
       </FadeIn>
 
-      {/* Big callouts */}
       <div className="grid gap-8 border-y border-night/10 py-10 sm:grid-cols-3">
         {[
           {
             value: `${s.hunger.leanSeasonMillions}M`,
-            label: "People in acute food insecurity",
-            sub: s.hunger.periodLean,
+            label: t.stats.calloutHunger,
+            sub: t.stats.periodLean,
           },
           {
             value: `${s.humanitarian.peopleInNeedMillions}M`,
-            label: "People needing humanitarian aid",
-            sub: `About ${s.humanitarian.percentOfPopulation}% of the country (${s.humanitarian.year})`,
+            label: t.stats.calloutAid,
+            sub: fill(t.stats.calloutAidSub, {
+              percent: s.humanitarian.percentOfPopulation,
+              year: s.humanitarian.year,
+            }),
           },
           {
             value: `${s.malnutrition.childrenUnderFiveMillions}M`,
-            label: "Children under five with acute malnutrition",
-            sub: `Plus ${s.malnutrition.pregnantBreastfeedingMillions}M pregnant & breastfeeding women`,
+            label: t.stats.calloutKids,
+            sub: fill(t.stats.calloutKidsSub, {
+              millions: s.malnutrition.pregnantBreastfeedingMillions,
+            }),
           },
         ].map((item, i) => (
           <FadeIn key={item.label} delay={0.08 * i}>
@@ -200,44 +205,42 @@ export function StatsVisuals() {
         ))}
       </div>
 
-      {/* Ring stats */}
       <FadeIn>
         <h3 className="font-display text-2xl text-night sm:text-3xl">
-          Share of the population affected
+          {t.stats.shareTitle}
         </h3>
-        <p className="mt-2 max-w-2xl text-ink/65">
-          Roughly one in three people face crisis-level hunger in the lean
-          season. Nearly half the country needs humanitarian assistance.
-        </p>
+        <p className="mt-2 max-w-2xl text-ink/65">{t.stats.shareLead}</p>
         <div className="mt-12 grid gap-12 sm:grid-cols-3">
           <RingStat
             percent={s.hunger.leanSeasonPercent}
-            label="Acute hunger"
-            detail={`${s.hunger.leanSeasonMillions} million people — IPC Phase 3 or worse during winter.`}
+            label={t.stats.ringHunger}
+            detail={fill(t.stats.ringHungerDetail, {
+              millions: s.hunger.leanSeasonMillions,
+            })}
           />
           <RingStat
             percent={s.humanitarian.percentOfPopulation}
-            label="Need aid"
-            detail={`${s.humanitarian.peopleInNeedMillions} million people projected to require humanitarian assistance in ${s.humanitarian.year}.`}
+            label={t.stats.ringAid}
+            detail={fill(t.stats.ringAidDetail, {
+              millions: s.humanitarian.peopleInNeedMillions,
+              year: s.humanitarian.year,
+            })}
             accent="sand"
           />
           <RingStat
             percent={s.livelihoods.povertyPercent}
-            label="In poverty"
-            detail={s.livelihoods.povertyNote}
+            label={t.stats.ringPoverty}
+            detail={t.stats.povertyNote}
           />
         </div>
       </FadeIn>
 
-      {/* Stacked hunger composition */}
       <FadeIn>
         <h3 className="font-display text-2xl text-night sm:text-3xl">
-          How deep is the hunger crisis?
+          {t.stats.depthTitle}
         </h3>
         <p className="mt-2 max-w-2xl text-ink/65">
-          During the winter lean season, {s.hunger.emergencyMillions} million
-          people are projected to face emergency-level hunger (IPC Phase 4) —
-          the most severe category short of famine.
+          {fill(t.stats.depthLead, { millions: s.hunger.emergencyMillions })}
         </p>
 
         <div className="mt-8">
@@ -274,49 +277,44 @@ export function StatsVisuals() {
 
         <div className="mt-10 space-y-6">
           <BarRow
-            label="Lean season — people in crisis or worse"
+            label={t.stats.barLean}
             value={s.hunger.leanSeasonMillions}
             max={s.populationApproxMillions}
             suffix="M"
-            note={s.hunger.periodLean}
+            note={t.stats.periodLean}
           />
           <BarRow
-            label="Harvest season — projected (still severe)"
+            label={t.stats.barHarvest}
             value={s.hunger.harvestSeasonMillions}
             max={s.populationApproxMillions}
             suffix="M"
-            note={s.hunger.periodHarvest}
+            note={t.stats.periodHarvest}
           />
         </div>
       </FadeIn>
 
-      {/* Jobs & livelihoods */}
       <FadeIn>
         <h3 className="font-display text-2xl text-night sm:text-3xl">
-          Jobs, livelihoods & poverty
+          {t.stats.jobsTitle}
         </h3>
-        <p className="mt-2 max-w-2xl text-ink/65">
-          Official unemployment does not capture the full picture. Many people
-          work informally or not at all — and still cannot provide basic
-          necessities for their families.
-        </p>
+        <p className="mt-2 max-w-2xl text-ink/65">{t.stats.jobsLead}</p>
 
         <div className="mt-10 space-y-7">
           <BarRow
-            label="Population living in poverty"
+            label={t.stats.barPoverty}
             value={s.livelihoods.povertyPercent}
             max={100}
             suffix="%"
           />
           <BarRow
-            label="Unemployment (ILO modelled estimate)"
+            label={t.stats.barUnemployment}
             value={s.livelihoods.unemploymentPercent}
             max={100}
             suffix="%"
-            note={s.livelihoods.unemploymentNote}
+            note={t.stats.unemploymentNote}
           />
           <BarRow
-            label="Youth unemployment (ages 15–24)"
+            label={t.stats.barYouth}
             value={s.livelihoods.youthUnemploymentPercent}
             max={100}
             suffix="%"
@@ -324,11 +322,10 @@ export function StatsVisuals() {
         </div>
       </FadeIn>
 
-      {/* Sources */}
       <FadeIn>
         <div className="border-t border-night/10 pt-8">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ink/45">
-            Data sources
+            {t.stats.sourcesEyebrow}
           </p>
           <ul className="mt-4 space-y-2 text-sm text-ink/65">
             <li>
@@ -338,7 +335,7 @@ export function StatsVisuals() {
                 rel="noopener noreferrer"
                 className="underline decoration-saffron/40 underline-offset-4 hover:decoration-saffron focus-ring"
               >
-                {s.hunger.source} — IPC Acute Food Insecurity Analysis
+                {t.stats.sourceIpc}
               </a>
             </li>
             <li>
@@ -348,7 +345,7 @@ export function StatsVisuals() {
                 rel="noopener noreferrer"
                 className="underline decoration-saffron/40 underline-offset-4 hover:decoration-saffron focus-ring"
               >
-                WFP Afghanistan Situation Report — malnutrition figures
+                {t.stats.sourceMalnutrition}
               </a>
             </li>
             <li>

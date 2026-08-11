@@ -1,21 +1,29 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { DonateButton } from "@/components/DonateButton";
 import { FadeIn } from "@/components/FadeIn";
+import { useI18n } from "@/components/LanguageProvider";
 import { site } from "@/lib/site";
 
 export function ContactForm() {
+  const { t } = useI18n();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [topic, setTopic] = useState("General question");
+  const [topic, setTopic] = useState(t.form.topics[0]);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    setTopic((prev) =>
+      t.form.topics.includes(prev) ? prev : t.form.topics[0],
+    );
+  }, [t.form.topics]);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     const subject = encodeURIComponent(`[Hope Has No Borders] ${topic}`);
     const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nTopic: ${topic}\n\n${message}`,
+      `${t.form.bodyName}: ${name}\n${t.form.bodyEmail}: ${email}\n${t.form.bodyTopic}: ${topic}\n\n${message}`,
     );
     window.location.href = `mailto:${site.contactEmail}?subject=${subject}&body=${body}`;
   }
@@ -28,7 +36,7 @@ export function ContactForm() {
       <form onSubmit={onSubmit} className="space-y-5">
         <div>
           <label htmlFor="contact-name" className="text-sm font-medium text-night">
-            Your name
+            {t.form.name}
           </label>
           <input
             id="contact-name"
@@ -39,12 +47,12 @@ export function ContactForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className={fieldClass}
-            placeholder="How should we address you?"
+            placeholder={t.form.namePlaceholder}
           />
         </div>
         <div>
           <label htmlFor="contact-email" className="text-sm font-medium text-night">
-            Your email
+            {t.form.email}
           </label>
           <input
             id="contact-email"
@@ -55,12 +63,12 @@ export function ContactForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={fieldClass}
-            placeholder="you@example.com"
+            placeholder={t.form.emailPlaceholder}
           />
         </div>
         <div>
           <label htmlFor="contact-topic" className="text-sm font-medium text-night">
-            Topic
+            {t.form.topic}
           </label>
           <select
             id="contact-topic"
@@ -69,16 +77,19 @@ export function ContactForm() {
             onChange={(e) => setTopic(e.target.value)}
             className={fieldClass}
           >
-            <option>General question</option>
-            <option>I want to donate</option>
-            <option>How funds are used</option>
-            <option>Partnership or volunteering</option>
-            <option>Media or press</option>
+            {t.form.topics.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
         <div>
-          <label htmlFor="contact-message" className="text-sm font-medium text-night">
-            Message
+          <label
+            htmlFor="contact-message"
+            className="text-sm font-medium text-night"
+          >
+            {t.form.message}
           </label>
           <textarea
             id="contact-message"
@@ -87,24 +98,23 @@ export function ContactForm() {
             rows={6}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className={`${fieldClass} resize-y min-h-[9rem]`}
-            placeholder="Write a few lines — every message is read with care."
+            className={`${fieldClass} min-h-[9rem] resize-y`}
+            placeholder={t.form.messagePlaceholder}
           />
         </div>
         <p className="text-sm text-ink/60">
-          This opens your email app to send to{" "}
+          {t.form.mailtoHint}{" "}
           <span className="font-medium text-night">{site.contactEmail}</span>.
-          Nothing is stored on this website.
         </p>
         <div className="flex flex-wrap gap-3 pt-1">
           <button
             type="submit"
-            className="inline-flex items-center justify-center rounded-md bg-saffron px-7 py-3.5 text-sm font-semibold text-cream shadow-[0_12px_28px_-10px_rgba(201,120,60,0.65)] transition-all hover:bg-saffron-hover hover:-translate-y-0.5 focus-ring"
+            className="inline-flex items-center justify-center rounded-md bg-saffron px-7 py-3.5 text-sm font-semibold text-cream shadow-[0_12px_28px_-10px_rgba(201,120,60,0.65)] transition-all hover:-translate-y-0.5 hover:bg-saffron-hover focus-ring"
           >
-            Send message
+            {t.form.send}
           </button>
           <DonateButton href="/donate" variant="ghost">
-            Give hope instead
+            {t.form.giveInstead}
           </DonateButton>
         </div>
       </form>

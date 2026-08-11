@@ -54,6 +54,19 @@ body {
   letter-spacing: -0.02em;
 }
 
+html[dir="rtl"] body {
+  font-family: var(--font-arabic), var(--font-dm-sans), system-ui, sans-serif;
+}
+
+html[dir="rtl"] .font-display {
+  font-family: var(--font-arabic), var(--font-fraunces), Georgia, serif;
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] .prose-mission {
+  line-height: 1.95;
+}
+
 .focus-ring:focus-visible {
   outline: 2px solid var(--saffron);
   outline-offset: 3px;
