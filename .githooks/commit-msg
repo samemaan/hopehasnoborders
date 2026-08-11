@@ -1,0 +1,17 @@
+#!/bin/sh
+# Safety net: reject commits that still contain Cursor attribution.
+MSG_FILE="$1"
+
+if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+  exit 0
+fi
+
+if grep -E -i -q \
+  '(^|[[:space:]])Co-authored-by:.*[Cc]ursor|Made-with:[[:space:]]*[Cc]ursor|Made with Cursor' \
+  "$MSG_FILE"; then
+  echo "Commit blocked: Cursor attribution found in the message." >&2
+  echo "Remove Co-authored-by / Made-with Cursor lines and try again." >&2
+  exit 1
+fi
+
+exit 0

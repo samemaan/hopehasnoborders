@@ -1,0 +1,21 @@
+#!/bin/sh
+# Strip Cursor attribution trailers so GitHub Contributors stays samemaan-only.
+MSG_FILE="$1"
+
+if [ -z "$MSG_FILE" ] || [ ! -f "$MSG_FILE" ]; then
+  exit 0
+fi
+
+# Works in Git Bash on Windows and on macOS/Linux.
+TMP_FILE="${MSG_FILE}.strip-cursor"
+grep -v -E -i \
+  '(^|[[:space:]])Co-authored-by:.*[Cc]ursor|Made-with:[[:space:]]*[Cc]ursor|Made with Cursor' \
+  "$MSG_FILE" > "$TMP_FILE" 2>/dev/null || cp "$MSG_FILE" "$TMP_FILE"
+
+# Collapse excessive blank lines at end of message
+awk '
+  NF { blank=0; print; next }
+  { blank++; if (blank<=1) print }
+' "$TMP_FILE" > "${TMP_FILE}.2" && mv "${TMP_FILE}.2" "$MSG_FILE"
+rm -f "$TMP_FILE"
+exit 0
