@@ -10,8 +10,8 @@ export const site = {
   paypal: {
     clientId:
       "BAAq1FRW_FRwNMIIwqeeBqCJbsce2Zm--1gBXrZITmyRhISN8CBB-pH0xb3wnQghJ4xYCI79paDCNSiGf4",
-    hostedButtonId: "NWYA7XU5ZL2DC",
-    paymentUrl: "https://www.paypal.com/ncp/payment/NWYA7XU5ZL2DC",
+    hostedButtonId: "7J7ZVFS7JRD9Y",
+    paymentUrl: "https://www.paypal.com/ncp/payment/7J7ZVFS7JRD9Y",
     currency: "EUR",
   },
   contactEmail: "donate@hopehasnoborders.com",
